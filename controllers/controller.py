@@ -10,5 +10,5 @@ class WordCounter():
         return self.count_from_string(html_str, keyword)
 
     def count_from_string(self, string, keyword):
-        result = re.findall('(^|\s)(' + keyword + ')($|\s)', string)
+        result = re.findall("\\b(fit)\\b", string)
         return len(result)

@@ -10,14 +10,14 @@ class TestWordCountString(unittest.TestCase):
         self.word_counter = None
 
     def test_count_from_short_string(self):
-        expected = 4
+        expected = 5
         test = "fit is good fit fitting, and fits is afit a fit, and fit is good, fit"
         result = self.word_counter.count_from_string(test, "fit")
         self.assertEqual(expected, result,
                          "Error, the counting number is not correct !")
 
     def test_count_from_long_string(self):
-        expected = 16
+        expected = 20
         test = "fit is good fit fitting, and fits is afit a fit, and fit is good, fit fit is good fit fitting, and fits is afit a fit, and fit is good, fit fit is good fit fitting, and fits is afit a fit, and fit is good, fit fit is good fit fitting, and fits is afit a fit, and fit is good, fit"
         result = self.word_counter.count_from_string(test, "fit")
         self.assertEqual(expected, result,
