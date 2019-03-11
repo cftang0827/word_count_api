@@ -22,7 +22,3 @@ class TestWordCountString(unittest.TestCase):
         result = self.word_counter.count_from_string(test, "fit")
         self.assertEqual(expected, result,
                          "Error, the counting number is not correct !")
-
-
-if __name__ == '__main__':
-    unittest.main()
