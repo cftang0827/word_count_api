@@ -44,3 +44,19 @@ class TestAppIntegration(unittest.TestCase):
         self.assertEqual(
             resp.status_code, 405,
             'It should be 405 status code, but not the correct one')
+
+    def test_not_found_404(self):
+        resp = self.app.post('wordcount2')
+        self.assertEqual(
+            resp.status_code, 404,
+            'It should be 404 status code, but not the correct one')
+
+    def test_internal_server_error_500(self):
+        resp = self.app.post(
+            '/wordcount', data={
+                "word": self.test_word,
+                "url": "abc",
+            })
+        self.assertEqual(
+            resp.status_code, 500,
+            'It should be 500 status code, but not the correct one')
