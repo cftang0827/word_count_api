@@ -1,5 +1,8 @@
 import unittest
 from controllers.controller import WordCounter
+'''
+Test case as unit test of word_counter
+'''
 
 
 class TestWordCountString(unittest.TestCase):
@@ -22,3 +25,10 @@ class TestWordCountString(unittest.TestCase):
         result = self.word_counter.count_from_string(test, "fit")
         self.assertEqual(expected, result,
                          "Error, the counting number is not correct !")
+
+    def test_count_from_html(self):
+        expected = 3
+        test = '<class="js-ga-set"> class is classic, and class is class </class>'
+        result = self.word_counter.count_from_string(test, "class")
+        self.assertEqual(expected, result,
+                         "Error, the counting number is not correct")

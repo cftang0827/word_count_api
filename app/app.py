@@ -12,12 +12,16 @@ word_counter = controller.WordCounter()
 
 @app.errorhandler(Exception)
 def unhandle_error(e):
+    '''
+    If there's any unhandle error, parse the http status code and return, or return 500 for internal server error
+    '''
     message = {
         'message': 'Error Message: {}'.format(str(e)),
     }
     status_str = str(e).split(' ')[0]
     app.logger.error("Error Message: {}".format(str(e)))
 
+    # Parse HTTP status code
     if status_str.isdigit():
         status_code = int(status_str)
     else:
@@ -32,11 +36,18 @@ def unhandle_error(e):
 
 @app.route('/wordcount', methods=['POST'])
 def wordcount():
+    '''
+    HTTP POST api for calculating wordcount, only POST method would be accepted
+    '''
     if request.method == 'POST':
         word = request.form['word']
         url = request.form['url']
+
+        # count the number of keyworks in url
         result = word_counter.count_from_url(url, word)
+        # update result's status code
         result.update({"status": "ok"})
+
         app.logger.info("Response ok")
         resp = jsonify(result)
 
@@ -44,6 +55,7 @@ def wordcount():
 
 
 if __name__ == '__main__':
+    # Start logging file handler
     handler = logging.FileHandler('./log/log_{}.log'.format(
         datetime.utcnow().strftime('%b_%d_%y_%H_%M_%S')))
     logging_format = logging.Formatter(
@@ -52,4 +64,5 @@ if __name__ == '__main__':
     handler.setFormatter(logging_format)
     app.logger.setLevel(logging.INFO)
     app.logger.addHandler(handler)
+    # Open the app and use 8000 port
     app.run(port=8000)
