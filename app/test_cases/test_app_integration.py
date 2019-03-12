@@ -17,7 +17,7 @@ class TestAppIntegration(unittest.TestCase):
 
     def test_ok_case(self):
         resp = self.app.post(
-            '/wordcount', data={
+            '/wordcount', json={
                 "word": self.test_word,
                 "url": self.test_url
             })
@@ -26,7 +26,7 @@ class TestAppIntegration(unittest.TestCase):
 
     def test_html_last_modified_cache(self):
         resp = self.app.post(
-            '/wordcount', data={
+            '/wordcount', json={
                 "word": self.test_word,
                 "url": self.test_url
             })
@@ -53,7 +53,7 @@ class TestAppIntegration(unittest.TestCase):
 
     def test_internal_server_error_500(self):
         resp = self.app.post(
-            '/wordcount', data={
+            '/wordcount', json={
                 "word": self.test_word,
                 "url": "abc",
             })

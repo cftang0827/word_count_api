@@ -36,12 +36,27 @@ def unhandle_error(e):
 
 @app.route('/wordcount', methods=['POST'])
 def wordcount():
-    '''
-    HTTP POST api for calculating wordcount, only POST method would be accepted
-    '''
+    """
+    @api {post} http://localhost:8000/wordcount count the word in web site from url
+    @apiName wordcount
+    @apiGroup Word Counter
+
+    @apiParam {String} word Keyword the need to analyzed.
+    @apiParam {String} url The url of the webpage
+
+    @apiSuccess {String} status Status of HTTP response.
+    @apiSuccess {Number} count  Number of times that keyword shows up.
+
+    @apiExample {curl} Example usage:
+        curl http://127.0.0.1:8000/wordcount -X POST -i -H "Content-Type:application/json" -d '{"word" : "test", "url" : "https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status"}'
+
+    """
     if request.method == 'POST':
-        word = request.form['word']
-        url = request.form['url']
+        content = request.get_json(silent=True)
+        word = content['word']
+        url = content['url']
+        # word = request.form['word']
+        # url = request.form['url']
 
         # count the number of keyworks in url
         result = word_counter.count_from_url(url, word)
