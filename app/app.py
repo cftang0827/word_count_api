@@ -39,7 +39,7 @@ def wordcount():
     """
     @api {post} http://localhost:8000/wordcount count the word in web site from url
     @apiName wordcount
-    @apiGroup Word Counter
+    @apiGroup wordcount
 
     @apiParam {String} word Keyword the need to analyzed.
     @apiParam {String} url The url of the webpage
