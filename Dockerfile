@@ -7,4 +7,4 @@ ADD . /app
 WORKDIR /app/app
 RUN pip3 install -r ../requirements.txt
 ENTRYPOINT ["python3"]
-CMD ["app.py"]
+CMD ["app.py", "0.0.0.0"]
