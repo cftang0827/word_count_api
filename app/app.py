@@ -1,4 +1,5 @@
 import logging
+import sys
 from datetime import datetime
 
 from flask import Flask, jsonify, request
@@ -80,4 +81,4 @@ if __name__ == '__main__':
     app.logger.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     # Open the app and use 8000 port
-    app.run(port=8000)
+    app.run(port=8000, host=sys.argv[1])
